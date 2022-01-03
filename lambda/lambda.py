@@ -1,7 +1,25 @@
 import boto3
 
-# ========================================================
-# neural,standard
+aws_comprehend = boto3.client("comprehend")
+aws_translate = boto3.client("translate")
+aws_polly = boto3.client("polly")
+aws_lex = boto3.client("lex-runtime")
+
+
+def translate_text(text: str, fromLanguage: str, toLangugae: str):
+    translated_text = aws_translate.translate_text(
+        Text=text, SourceLanguageCode=fromLanguage, TargetLanguageCode=toLangugae
+    )
+    return translated_text
+
+
+def get_sentiment(text: str):
+    trans_response = translate_text(text, 'auto', 'en')
+    text = trans_response['TranslatedText']
+    sentiment = aws_comprehend.detect_sentiment(Text=text, LanguageCode="en")
+    return sentiment
+
+
 polly_voices = {
     "ar": ["standard", "arb", "Zeina"],
     "zh": ["standard", "cmn-CN", "Zhiyu"],
@@ -26,21 +44,10 @@ polly_voices = {
     "cy": ["standard", "cy-DB", "Gwyneth"]
 }
 
-aws_comprehend = boto3.client("comprehend")
-aws_translate = boto3.client("translate")
-aws_polly = boto3.client("polly")
-aws_lex = boto3.client("lex-runtime")
-
-
-def get_sentiment(text: str):
-    trans_response = translate_text(text, 'auto', 'en')
-    text = trans_response['TranslatedText']
-    sentiment = aws_comprehend.detect_sentiment(Text=text, LanguageCode="en")
-    return sentiment
-
 
 def get_audio_file(text: str):
-    lang = aws_comprehend.detect_dominant_language(Text=text)['Languages'][0]['LanguageCode']
+    lang = aws_comprehend.detect_dominant_language(
+        Text=text)['Languages'][0]['LanguageCode']
     if lang not in polly_voices:
         raise Exception(f'{lang} not available for Amazon Polly')
     audio = aws_polly.synthesize_speech(
@@ -54,21 +61,12 @@ def get_audio_file(text: str):
     return audio
 
 
-def translate_text(text: str, fromLanguage: str, toLangugae: str):
-    translated_text = aws_translate.translate_text(
-        Text=text, SourceLanguageCode=fromLanguage, TargetLanguageCode=toLangugae
-    )
-    return translated_text
-
-
 def get_chat_response(text: str, username: str):
     chat_response = aws_lex.post_text(
         botName="ECOM_CHATBOT", botAlias="ECOM_CHATBOT_ALIAS", userId=username, inputText=text
     )
     return chat_response
 
-
-# ========================================================
 
 # Lambda Handler Function
 def lambda_handler(event, context):

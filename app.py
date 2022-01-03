@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from dotenv import load_dotenv
+load_dotenv()
 import os
 import boto3
 
@@ -17,7 +19,6 @@ lambda_function = boto3.client("lambda")
 
 @app.route("/")
 def home():
-    print(app.config)
     return render_template('index.html')
 
 
@@ -34,7 +35,7 @@ def apiroute():
         response = response['Payload'].read()
     except Exception as e:
         response = {'response': 'fail',
-                    'error': e.__dict__['response']['Error']['Message']}
+                    'error': e.__dict__['response']['Error']['Message'] if 'response' in e.__dict__ else str(e)}
     return response
 
 
