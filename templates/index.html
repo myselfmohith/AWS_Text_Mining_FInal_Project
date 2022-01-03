@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICONS - Final Project</title>
+</head>
+
+<body>
+
+    <nav class="flex">
+        <h1>ICONS</h1>
+        <ul class="flex">
+            <li> <a href="#sentiment-section">Sentiment</a> </li>
+            <li> <a href="#translate-section">Translate</a> </li>
+            <li> <a href="#tts-section">Text to Speech</a> </li>
+            <li> <a href="#chatbot-section">ChatBot</a> </li>
+        </ul>
+    </nav>
+
+
+    <section id="translate-section">
+        <h3>Translate</h3>
+        <div class="section-container" id="translate-container">
+            <div class="flex" id="translate-input-options">
+                <select id="from-langauge">
+                    <option value="auto">AUTO</option>
+                </select>
+                <img id="translate-arrow" src="{{ url_for('static',filename='svg/Arrow.svg') }}" alt="">
+                <select id="to-langauge">
+                    <option value="en">ENGLISH</option>
+                </select>
+            </div>
+            <div id="translate-textareas" class="flex">
+                <textarea placeholder="Type here..." id="from-language-textarea"></textarea>
+                <textarea disabled id="to-language-textarea"></textarea>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="sentiment-section">
+        <h3>Sentiment Analysis</h3>
+        <div class="section-container" id="sentiment-container">
+            <div class="flex" id="sentiment-results">
+                <div id="emoji-container">
+                    <svg >
+                        <circle cx="80" cy="70" r="60"></circle>
+                    </svg>
+                    <img id="sentiment-emotion" src="" alt="">
+                    <h4 id="sentiment-percent" ></h4>
+                </div>
+            </div>
+            <textarea placeholder="Type your text....." class="wide-text" id="sentiment-input"></textarea>
+        </div>
+        <img class="arrow-submit" id="sentiment-arrow" src="{{ url_for('static',filename='svg/Arrow.svg') }}" alt="">
+    </section>
+
+    <section id="tts-section">
+        <h3>Text to Speech</h3>
+        <div class="section-container" id="tts-container">
+            <div class="flex" id="tts-results">
+                <svg height="50%" viewBox="0 0 113 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0 45.2694V70.3805C0 73.8333 2.825 76.6582 6.27778 76.6582H25.1111L45.765 97.3121C49.72 101.267 56.5 98.4421 56.5 92.8549V22.7321C56.5 17.1449 49.72 14.3199 45.765 18.2749L25.1111 38.9916H6.27778C2.825 38.9916 0 41.8166 0 45.2694ZM84.75 57.8249C84.75 46.7132 78.3467 37.171 69.0556 32.5255V83.0616C78.3467 78.4788 84.75 68.9366 84.75 57.8249ZM69.0556 10.4277V11.6833C69.0556 14.0688 70.625 16.1405 72.8222 17.0194C89.0189 23.4855 100.444 39.3682 100.444 57.8249C100.444 76.2816 89.0189 92.1644 72.8222 98.6305C70.5622 99.5094 69.0556 101.581 69.0556 103.967V105.222C69.0556 109.177 73.0106 111.939 76.6517 110.558C97.9333 102.46 113 81.9316 113 57.8249C113 33.7183 97.9333 13.1899 76.6517 5.09158C73.0106 3.64769 69.0556 6.47269 69.0556 10.4277Z"
+                        fill="#D7D7D7" />
+                </svg>
+                <audio src="" id="tts-audio"></audio>
+            </div>
+            <textarea placeholder="Type your text....." class="wide-text" id="tts-input"></textarea>
+        </div>
+        <img class="arrow-submit" id="tts-arrow" src="{{ url_for('static',filename='svg/Arrow.svg') }}" alt="">
+    </section>
+
+
+    <section id="chatbot-section">
+        <h3>ChatBot</h3>
+        <div class="section-container flex" id="chatbot-container">
+            <ul class="flex" id="chats-data">
+                <img height="300px" class="center-to-chat" src="{{ url_for('static',filename='svg/New Project.png') }}" alt="">
+                <div id="dummy-view"></div>
+            </ul>
+            <form class="flex" id="send-message-container">
+                <input autocomplete="off" name="send-message-input" placeholder="Type your message" type="text" />
+                <button type="submit" title="Send Message" class="flex" name="send-message-button" id="send-message-button">
+                    <img src="{{ url_for('static',filename='svg/send.svg') }}">
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static',filename='ui.js') }}"></script>
+    <script src="{{ url_for('static',filename='script.js') }}"></script>
+</body>
+
+</html>
