@@ -15,10 +15,10 @@
     <nav class="flex">
         <h1>ICONS</h1>
         <ul class="flex">
-            <li> <a href="#sentiment-section">Sentiment</a> </li>
-            <li> <a href="#translate-section">Translate</a> </li>
-            <li> <a href="#tts-section">Text to Speech</a> </li>
-            <li> <a href="#chatbot-section">ChatBot</a> </li>
+            <li id="translate-section-nav" > <a href="#translate-section">Translate</a> </li>
+            <li id="sentiment-section-nav" > <a href="#sentiment-section">Comprehend</a> </li>
+            <li id="tts-section-nav" > <a href="#tts-section">Polly</a> </li>
+            <li id="chatbot-section-nav" > <a href="#chatbot-section">Lex</a> </li>
         </ul>
     </nav>
 
@@ -48,11 +48,11 @@
         <div class="section-container" id="sentiment-container">
             <div class="flex" id="sentiment-results">
                 <div id="emoji-container">
-                    <svg >
+                    <svg>
                         <circle cx="80" cy="70" r="60"></circle>
                     </svg>
                     <img id="sentiment-emotion" src="" alt="">
-                    <h4 id="sentiment-percent" ></h4>
+                    <h4 id="sentiment-percent"></h4>
                 </div>
             </div>
             <textarea placeholder="Type your text....." class="wide-text" id="sentiment-input"></textarea>
@@ -81,12 +81,14 @@
         <h3>ChatBot</h3>
         <div class="section-container flex" id="chatbot-container">
             <ul class="flex" id="chats-data">
-                <img height="300px" class="center-to-chat" src="{{ url_for('static',filename='svg/New Project.png') }}" alt="">
+                <img height="300px" class="center-to-chat" src="{{ url_for('static',filename='svg/New Project.png') }}"
+                    alt="">
                 <div id="dummy-view"></div>
             </ul>
             <form class="flex" id="send-message-container">
                 <input autocomplete="off" name="send-message-input" placeholder="Type your message" type="text" />
-                <button type="submit" title="Send Message" class="flex" name="send-message-button" id="send-message-button">
+                <button type="submit" title="Send Message" class="flex" name="send-message-button"
+                    id="send-message-button">
                     <img src="{{ url_for('static',filename='svg/send.svg') }}">
                 </button>
             </form>

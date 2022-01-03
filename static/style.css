@@ -51,9 +51,11 @@ nav ul {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 nav ul li {
+  color: var(--text-color);
   margin: auto 2px;
 }
 
@@ -67,8 +69,15 @@ section {
   margin: 25px 0;
   padding: 0 var(--postion-of-items);
   color: var(--text-color);
-  scroll-margin: 150px;
+  scroll-margin: 160px;
   position: relative;
+  animation: slideIN 400ms forwards;
+}
+
+@keyframes slideIN {
+  from{
+    transform: scale(1.05);
+  }
 }
 
 section h3 {
@@ -164,10 +173,6 @@ section h3 {
   cursor: pointer;
 }
 
-#translate-arrow:active {
-  opacity: 0.8;
-}
-
 #translate-input-options select {
   padding: 5px;
   font-size: 20px;
@@ -216,6 +221,7 @@ section h3 {
 
   nav ul {
     flex-direction: column;
+    gap: 5px;
   }
 }
 
@@ -226,6 +232,7 @@ section h3 {
 }
 
 .center-to-chat {
+  max-width: 100%;
   align-self: center;
 }
 
@@ -268,6 +275,13 @@ input[name="send-message-input"] {
   padding: 8.5px;
   margin: 5px 0 10px;
   position: relative;
+  animation: rotatein 200ms forwards;
+}
+
+@keyframes rotatein {
+  from{
+    transform: translateY(10px);
+  }
 }
 
 #chats-data .me {
@@ -307,8 +321,4 @@ input[name="send-message-input"] {
   cursor: pointer;
   background: #fff;
   border-radius: 50%;
-}
-
-.arrow-submit:active {
-  opacity: 0.8;
 }

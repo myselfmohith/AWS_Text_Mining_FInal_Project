@@ -22,6 +22,11 @@ function enableIcon(element) {
     element.style.pointerEvents = 'unset';
 }
 
+
+window.addEventListener('hashchange',(e) => {
+    console.log(e);
+})
+
 // ! Translate ----------------------------------------------------
 translate_submit.addEventListener('click', () => {
     const from = document.getElementById("from-langauge").value;
