@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request
-from dotenv import load_dotenv
 import os
 import boto3
 
 
 app = Flask(__name__)
-load_dotenv()
+
 
 boto3 = boto3.Session(
     aws_access_key_id=os.getenv("ACC_KEY"),
@@ -16,9 +15,9 @@ boto3 = boto3.Session(
 
 lambda_function = boto3.client("lambda")
 
-
 @app.route("/")
 def home():
+    print(app.config)
     return render_template('index.html')
 
 
@@ -40,4 +39,4 @@ def apiroute():
 
 
 if __name__ == "__main__":
-    app.run(debug=False,host='0.0.0.0')
+    app.run()
