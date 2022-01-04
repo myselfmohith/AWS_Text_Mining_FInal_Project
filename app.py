@@ -1,12 +1,10 @@
+import boto3
+import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 load_dotenv()
-import os
-import boto3
-
 
 app = Flask(__name__)
-
 
 boto3 = boto3.Session(
     aws_access_key_id=os.getenv("ACC_KEY"),
@@ -15,13 +13,11 @@ boto3 = boto3.Session(
     region_name="us-east-1",
 )
 
-lambda_function = boto3.client("lambda")
-
 @app.route("/")
 def home():
     return render_template('index.html')
 
-
+lambda_function = boto3.client("lambda")
 @app.route("/lambda", methods=["POST"])
 def apiroute():
     body = request.data
