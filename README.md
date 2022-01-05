@@ -4,7 +4,7 @@ Amazon AWS Services
 |Team Members||
 |:-|:-|
 |Tejasri Arige|110711096|
-||110711154|
+|Bhavanam Vijaya Durga|110711154|
 ||110710683|
 |Mohith Kumar Bezawada|110710706|
 
