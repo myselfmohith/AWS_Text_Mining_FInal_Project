@@ -78,6 +78,6 @@ const availableLanguages = {
 }
 
 for (const [lang, code] of Object.entries(availableLanguages)) {
-    document.querySelector("#from-langauge").innerHTML += `<option value="${code}">${lang.toUpperCase()}</option>`
-    document.querySelector("#to-langauge").innerHTML += `<option value="${code}">${lang.toUpperCase()}</option>`
+    document.querySelector("#from-langauge").innerHTML += `<option value="${code}">${lang.toUpperCase()} [${code}]</option>`
+    document.querySelector("#to-langauge").innerHTML += `<option value="${code}">${lang.toUpperCase()} [${code}]</option>`
 }

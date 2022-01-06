@@ -23,10 +23,6 @@ function enableIcon(element) {
 }
 
 
-window.addEventListener('hashchange',(e) => {
-    console.log(e);
-})
-
 // ! Translate ----------------------------------------------------
 translate_submit.addEventListener('click', () => {
     const from = document.getElementById("from-langauge").value;
@@ -79,7 +75,7 @@ sentiment_submit.addEventListener('click', () => {
             const percent = Math.round(res.SentimentScore[sentiment.charAt(0) + sentiment.toLowerCase().slice(1)] * 100);
             document.getElementById('sentiment-percent').textContent = `${sentiment} - ${percent}%`;
             document.getElementById('sentiment-percent').style.color = sentiment_colors[sentiment];
-            
+
             document.querySelector("#emoji-container > svg > circle").style.stroke = sentiment_colors[sentiment];
             document.getElementById('sentiment-emotion').src = `/static/svg/${sentiment}.svg`;
             document.querySelector("#emoji-container > svg > circle").style.strokeDashoffset = 378 - 378 * (percent / 100);
@@ -149,10 +145,42 @@ function appendToChat(text, isbot) {
     dummy.scrollIntoView({ behavior: 'smooth' });
 }
 
+
+function notLexService(text) {
+    const arr = text.replace("!", "").split(" ");
+    switch (arr[0]) {
+        case "translate":
+            postRequest({
+                SERVICE: 'TRANSLATE',
+                PAYLOAD: {
+                    text: arr.splice(3,).join(" "),
+                    from: arr[1],
+                    to: arr[2]
+                }
+            }).then(res => {
+                if (res.response !== "ok") throw { "message": res.error };
+                appendToChat(res.TranslatedText, true);
+            }).catch(err => appendToChat(`${err.message} <br /> <em>Check for the language codes in translate section</em>`, true));
+            break;
+        case "sentiment":
+            postRequest({
+                SERVICE: 'COMPREHEND',
+                PAYLOAD: { text: arr.splice(1,).join(" ") }
+            }).then(res => {
+                if (res.response !== "ok") throw { "message": res.error };
+                appendToChat(`${res.Sentiment} ${Math.round(res.SentimentScore[res.Sentiment.charAt(0) + res.Sentiment.toLowerCase().slice(1)] * 100)}%.`, true);
+            }).catch(err => appendToChat(`${err.message}`, true));
+            break;
+        default:
+            appendToChat(` <p>Check Input,Try:</p><br /><p>><strong> !trans [from] [to] [text] </strong> </p><p>Ex: !trans en te Hey man hows Going on</p><br /><p>><strong> !sentiment [text] </strong></p><p>!sentiment this is good text</p>`, true)
+    }
+}
+
 document.getElementById('send-message-container').addEventListener('submit', (e) => {
     e.preventDefault();
     const text = e.target['send-message-input'].value;
-    if (text === "") return;
+    appendToChat(text, false);
+    if (text.trim().startsWith("!")) return notLexService(text);
     const apibody = {
         SERVICE: 'LEX',
         PAYLOAD: {
@@ -161,7 +189,6 @@ document.getElementById('send-message-container').addEventListener('submit', (e)
     }
     e.target['send-message-input'].value = "";
     e.target['send-message-button'].setAttribute("disabled", "true");
-    appendToChat(text, false);
     postRequest(apibody)
         .then(res => {
             if (res.response !== "ok") throw { "message": res.error };
