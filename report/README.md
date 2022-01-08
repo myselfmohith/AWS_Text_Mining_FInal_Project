@@ -1,9 +1,12 @@
-|ICONS||
-|:-|:-|
-|Tejasri Arige|110711096|
-|Bhavanam Vijaya Durga|110711154|
-|Medarmetla Tarun Teja|110710683|
-|Mohith Kumar Bezawada|110710706|
+## Final Project
+
+### Team Name: ICONS(10)
+|Name|ID|Contribution|
+|:-|:-|:-|
+|Tejasri Arige|110711096|`0%`|
+|Bhavanam Vijaya Durga|110711154|`0%`|
+|Medarmetla Tarun Teja|110710683|`0%`|
+|Mohith Kumar Bezawada|110710706|`0%`|
 
 ### AWS Services
 * [Lambda](#lambda "Lambda")
@@ -13,8 +16,8 @@
 * [Lex](#lex "Lex")
 
 ### Extras 
-* [Flask](#flask)
-* [Webpage](#webpage)
+* [Flask](#flask "Flask")
+* [Webpage](https://icons-final-project.herokuapp.com "https://icons-final-project.herokuapp.com")
 
 
 #### Architecture
