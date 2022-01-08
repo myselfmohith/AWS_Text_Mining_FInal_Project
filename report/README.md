@@ -176,19 +176,10 @@ There are two routes in this function.
 
 
 #### Webpage
+https://icons-final-project.herokuapp.com
+
 <img 
     src="./images/webpage.png"
     alt="Webpage ScreenShot"
     style="border-radius: 5px;box-shadow: 1px 1px 3px .5px #22222225"
     >
-<p align="center">
-    <a  href="https://icons-final-project.herokuapp.com/"
-        target="_blank"
-        style="
-        background: orange;
-        padding: 6px;
-        border-radius: 5px;
-        color:#FFF
-        "
-        >Go to Website<sup>*</sup> </a>
-</p>
