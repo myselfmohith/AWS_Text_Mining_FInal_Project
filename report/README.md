@@ -173,13 +173,3 @@ def apiroute():
 There are two routes in this function.
 * **/(Home)** - Serves the front-end file to the web browser the html file is served from the templates folder and all the javascript, css and icons are served from the static folder.
 * **/lambda** - Using the boto3 we invoke the lambda function and pass the data coming from the front-end and send the response from lambda to the front-end.
-
-
-#### Webpage
-https://icons-final-project.herokuapp.com
-
-<img 
-    src="./images/webpage.png"
-    alt="Webpage ScreenShot"
-    style="border-radius: 5px;box-shadow: 1px 1px 3px .5px #22222225"
-    >
