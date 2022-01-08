@@ -5,7 +5,7 @@
 |:-|:-|:-|
 |Tejasri Arige|110711096|`0%`|
 |Bhavanam Vijaya Durga|110711154|`0%`|
-|Medarmetla Tarun Teja|110710683|`0%`|
+|Mederametla TarunTeja|110710683|`0%`|
 |Mohith Kumar Bezawada|110710706|`0%`|
 
 ### AWS Services
